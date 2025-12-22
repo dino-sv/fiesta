@@ -1,0 +1,194 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For You</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #B5EAEA, #FADADD);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }.card {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 45px;
+  max-width: 720px;
+  border-radius: 28px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+  animation: floatIn 1.5s ease;
+  border: 4px dashed #7FB3FF;
+  position: relative;
+  z-index: 2;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.3rem;
+  margin-bottom: 22px;
+  color: #5A8DEE;
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  margin-bottom: 18px;
+}
+
+.signature {
+  margin-top: 32px;
+  text-align: right;
+  font-style: italic;
+  color: #777;
+}
+
+@keyframes floatIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.heart {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-top: 12px;
+  animation: pulse 1.5s infinite;
+  color: #F06292;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 35px;
+}
+
+button {
+  padding: 14px 34px;
+  font-size: 1rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.yes {
+  background: linear-gradient(135deg, #5A8DEE, #7FB3FF);
+  color: white;
+}
+
+.no {
+  background: linear-gradient(135deg, #F48FB1, #F7A8C9);
+  color: white;
+}
+
+#response {
+  margin-top: 28px;
+  text-align: center;
+  font-style: italic;
+  color: #555;
+}
+
+input {
+  display: block;
+  margin: 20px auto 30px;
+  padding: 14px 20px;
+  font-size: 1rem;
+  border-radius: 999px;
+  border: 2px solid #7FB3FF;
+  outline: none;
+  text-align: center;
+}
+
+.dino {
+  position: absolute;
+  font-size: 2rem;
+  animation: floatDino 18s linear infinite;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+@keyframes floatDino {
+  from { transform: translateY(100vh) translateX(0); }
+  to { transform: translateY(-120vh) translateX(40px); }
+}
+
+  </style>
+</head>
+<body>
+  <!-- floating dinosaurs -->
+  <div class="dino" style="left:10%; animation-delay:0s">🦖</div>
+  <div class="dino" style="left:30%; animation-delay:4s">🦕</div>
+  <div class="dino" style="left:55%; animation-delay:8s">🦖</div>
+  <div class="dino" style="left:75%; animation-delay:2s">🦕</div>
+  <div class="dino" style="left:90%; animation-delay:6s">🦖</div>  <!-- soft music -->  <iframe style="display:none" src="https://open.spotify.com/embed/track/3ZCTVFBt2Brf31RLEnCkWJ?utm_source=generator" width="300" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>  <div class="card">
+    <div id="nameSection">
+      <h1>hi there 🦕</h1>
+      <p style="text-align:center">before you read this, can you tell me your name?</p>
+      <input id="nameInput" type="text" placeholder="your name here" />
+      <button class="yes" onclick="showConfession()">enter</button>
+    </div><div id="confession" style="display:none">
+  <h1 id="title"></h1>
+
+  <p>
+    this is a little scary for me, but i wanted to be honest. we’re not really close—just
+    classmates who share the same room, the same moments, the same ordinary days. but
+    somewhere in between all that, i started noticing you.
+  </p>
+
+  <p>
+    i like you. quietly. simply. the kind of like that doesn’t demand anything, just
+    exists. even if we’ve never really talked much, you’ve made school feel warmer than
+    it used to.
+  </p>
+
+  <p>
+    i don’t expect anything from you. i just wanted you to know how i feel. whatever your
+    answer is, i’ll respect it—with a smile.
+  </p>
+
+  <div class="heart">(⁠.⁠ ❛⁠ ᴗ⁠ ❛⁠.⁠) ෆ⁠╹⁠ .̮⁠ ╹⁠ෆ 🦖</div>
+
+  <div class="buttons">
+    <button class="yes" onclick="sayYes()">yes</button>
+    <button class="no" onclick="sayNo()">no</button>
+  </div>
+
+  <p id="response"></p>
+
+  <div class="signature">— a classmate who likes you</div>
+</div>
+
+  </div>  <script>
+    function showConfession() {
+      const name = document.getElementById('nameInput').value.trim();
+      if (!name) return;
+      document.getElementById('nameSection').style.display = 'none';
+      document.getElementById('confession').style.display = 'block';
+      document.getElementById('title').innerText = `hi, ${name} 🦕`;
+    }
+
+    function sayYes() {
+      document.getElementById('response').innerText = "that makes me really happy. thank you for being honest with me.";
+    }
+
+    function sayNo() {
+      document.getElementById('response').innerText = "thank you for being honest. i’ll keep this as something warm to smile about.";
+    }
+  </script></body>
+  </html>
