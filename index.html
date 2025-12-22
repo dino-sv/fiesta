@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>dino</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #B5EAEA, #FADADD);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }.card {
+  background: rgba(255,255,255,0.9);
+  padding: 30px;
+  max-width: 500px;
+  border-radius: 24px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+  border: 4px dashed #7FB3FF;
+  position: relative;
+  z-index: 2;
+  font-size: 0.95rem;
+}
+
+h1 { color: #5A8DEE; font-size: 1.5rem; margin-bottom: 15px; }
+p { line-height: 1.6; margin-bottom: 15px; min-height: 1.2em; }
+.signature { font-style: italic; color: #777; margin-top: 20px; }
+.heart { font-size: 1.8rem; color: #F06292; margin: 15px 0; }
+input { display: block; margin: 20px auto; padding: 10px 16px; border-radius: 999px; border: 2px solid #7FB3FF; text-align: center; width: 80%; }
+.buttons { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
+button { padding: 10px 24px; border-radius: 999px; border: none; cursor: pointer; font-weight: 600; font-size: 0.9rem; }
+.yes { background: linear-gradient(135deg, #5A8DEE, #7FB3FF); color: white; }
+.no { background: linear-gradient(135deg, #F48FB1, #F7A8C9); color: white; }
+#responseBox { display:none; background: #fff; border: 2px solid #7FB3FF; border-radius: 16px; padding: 20px; margin-top: 20px; font-size: 0.95rem; }
+
+.dino { position: absolute; font-size: 2rem; animation: floatDino 18s linear infinite; opacity: 0.6; z-index: 1; }
+@keyframes floatDino { from { transform: translateY(100vh); } to { transform: translateY(-120vh); } }
+
+  </style>
+</head>
+<body>
+  <!-- Floating dinosaurs -->
+  <div class="dino" style="left:10%; animation-delay:0s">🦖</div>
+  <div class="dino" style="left:30%; animation-delay:4s">🦕</div>
+  <div class="dino" style="left:55%; animation-delay:8s">🦖</div>
+  <div class="dino" style="left:75%; animation-delay:2s">🦕</div>
+  <div class="dino" style="left:90%; animation-delay:6s">🦖</div>  <div class="card">
+    <div id="nameSection">
+      <h1>hi there 🦕</h1>
+      <p>before you read this, can you tell me your name?</p>
+      <input id="nameInput" type="text" placeholder="your name here" />
+      <button class="yes" onclick="showConfession()">enter</button>
+    </div><div id="confession" style="display:none">
+  <h1 id="title"></h1>
+  <p id="confessionText"></p>
+  <div class="heart">(⁠.⁠ ❛⁠ ᴗ⁠ ❛⁠.⁠) ෆ⁠╹⁠ .̮⁠ ╹⁠ෆ 🦖</div>
+  <div class="buttons">
+    <button class="yes" onclick="showResponse('yes')">yes</button>
+    <button class="no" onclick="showResponse('no')">no</button>
+  </div>
+  <div id="responseBox"></div>
+  <div class="signature">— a classmate who likes you</div>
+</div>
+
+  </div>  <script>
+    const confessionMessage = `this is a little scary for me, but i wanted to be honest. we’re not really close—just classmates who share the same room, the same moments, the same ordinary days. but somewhere in between all that, i started noticing you.\n\ni like you. quietly. simply. the kind of like that doesn’t demand anything, just exists. even if we’ve never really talked much, you’ve made school feel warmer than it used to.\n\ni don’t expect anything from you. i just wanted you to know how i feel. whatever your answer is, i’ll respect it—with a smile.`;
+
+    function showConfession() {
+      const name = document.getElementById('nameInput').value.trim();
+      if (!name) return;
+      document.getElementById('nameSection').style.display = 'none';
+      document.getElementById('confession').style.display = 'block';
+      document.getElementById('title').innerText = `hi, ${name} 🦕`;
+      typeConfession(confessionMessage, 'confessionText', 0);
+    }
+
+    function typeConfession(text, elementId, index) {
+      if (index < text.length) {
+        document.getElementById(elementId).innerHTML += text.charAt(index);
+        setTimeout(() => typeConfession(text, elementId, index + 1), 30);
+      }
+    }
+
+    function showResponse(answer) {
+      const box = document.getElementById('responseBox');
+      box.style.display = 'block';
+      if(answer === 'yes') {
+        box.innerHTML = 'yay! that makes me really happy. thank you for saying yes!';
+      } else {
+        box.innerHTML = 'thank you for being honest. i’ll treasure this moment warmly.';
+      }
+    }
+  </script></body>
+  </html>
